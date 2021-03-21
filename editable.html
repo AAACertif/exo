@@ -904,16 +904,18 @@ function enableSubm(){
 <script type="text/javascript">
 function checkCheckBox(ele) {
  
-    if (ele.checked == false ) {
-        var div = document.getElementById("ajout");
-        div.removeChild(div.firstChild);
-    return false;
+         var div = document.getElementById("test").;
+
+    if (ele.value == "0" ) {
+           div.style.display = 'block';
+		console.log('aaaaaaaaaaaaaa')
     }
     else {
-        var textarea = document.createElement("textarea");
-        document.getElementById("ajout").appendChild(textarea);
+        div..style.display ='none';
+				console.log('bbbbbbbb')
+
     }
-    return true;
+
      
 }
 
@@ -1955,12 +1957,12 @@ function checkCheckBox(ele) {
 
     J’ai un vélo pour les maraudes ?
     <div>
-  <input type="radio" id="huey" name="drone" onclick="radioQuestion(this)" value="0" checked="">
+  <input type="radio" id="huey" name="drone" onclick="checkCheckBox(this)" value="0" checked="">
   <label for="huey">Oui</label>
 </div>
 
 <div>
-  <input type="radio" id="dewey" name="drone" onclick="radioQuestion(this)" value="1">
+  <input type="radio" id="dewey" name="drone" onclick="checkCheckBox(this)" value="1">
   <label for="dewey">Non</label>
 </div>
 
