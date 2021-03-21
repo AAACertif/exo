@@ -917,7 +917,193 @@ function checkCheckBox(ele) {
      
 }
 </script>
-    <style class="silex-inline-styles" type="text/css">.body-initial {background-color: rgba(255,255,255,1); position: static;}.silex-id-1474394621033-3 {position: static; margin-top: -1px;}.silex-id-1474394621032-2 {background-color: transparent; min-height: 1494.8046875px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1615309362492-4 {width: 1036px; min-height: 420px; background-color: rgb(255, 255, 255); position: absolute; top: 42.99999809265137px; left: 121.97915649414062px;}.silex-id-1615309890893-8 {width: 1008px; min-height: 332px; background-color: rgb(255, 255, 255); position: absolute; top: 28px; left: 69px;}.silex-id-1615475032045-0 {width: 806px; min-height: 35px; background-color: rgb(255, 255, 255); position: absolute; top: 16.423606872558594px; left: 258.6632080078125px;}.silex-id-1615475640960-3 {width: 535px; min-height: 45px; background-color: rgb(255, 255, 255); position: absolute; top: 84.29166412353516px; left: 338.0000305175781px;}.silex-id-1615476220042-4 {width: 270px; min-height: 36px; background-color: rgb(255, 255, 255); position: absolute; top: 133.47265625px; left: 464.9453125px;}.silex-id-1615479550980-5 {width: 245px; min-height: 40px; background-color: rgb(255, 255, 255); position: absolute; top: 156.5px; left: 12.396041870117188px;}.silex-id-1615982018438-0 {width: 316px; min-height: 45px; background-color: rgb(255, 255, 255); position: absolute; top: 132.98828125px; left: 809.0078125px;}.silex-id-1615982398902-1 {width: 725px; min-height: 36px; background-color: rgb(255, 255, 255); position: absolute; top: 429.6041564941406px; left: 168.35415649414062px;}.silex-id-1615982785651-2 {width: 889px; min-height: 68px; background-color: rgb(255, 255, 255); position: absolute; top: 271px; left: 267.7708435058594px;}.silex-id-1615983002903-3 {width: 1022.8125px; min-height: 238.6666717529297px; background-color: rgb(255, 255, 255); position: absolute; top: 27px; left: 121px;}.silex-id-1615983641775-4 {width: 100px; min-height: 3319px; background-color: rgb(255, 255, 255); position: absolute; top: -344.5px; left: 38.98828125px;}.silex-id-1615984300150-5 {width: 1152px; min-height: 801px; background-color: rgb(255, 255, 255); position: absolute; top: 211px; left: 92px;}.silex-id-1615986766095-6 {width: 479.5859375px; min-height: 90.68359375px; background-color: rgb(255, 255, 255); position: absolute; top: 318.31640625px; left: 488.4140625px;}.silex-id-1616341295363-3 {width: 202px; min-height: 56px; background-color: rgb(255, 255, 255); position: absolute; top: 65px; left: 116px;}@media only screen and (max-width: 480px) {}</style>
+
+<script type="text/javascript">
+function radioQuestion(ele) {
+         var div = document.getElementById("test").;
+
+    if (ele.value == 0 ) {
+           div.style.display = 'block';
+
+    return false;
+    }
+    else {
+        div..style.display ='none';
+    }
+    return true;
+     
+}
+</script>
+<script type="text/javascript">var cache = {};
+
+jQuery(function($) {
+
+$('.ravis_slides').slick({
+  dots: true,
+  infinite: true,
+  speed: 300,
+  autoplay: true,
+pauseOnDotsHover: true,
+pauseOnHover: true,
+adaptiveHeight: true,
+  slidesToShow: 1
+  });
+	 
+		$('input[placeholder]').each(function(){  
+        
+				var input = $(this);        
+				
+				$(input).val(input.attr('placeholder'));
+						
+				$(input).focus(function(){
+					 if (input.val() == input.attr('placeholder')) {
+						 input.val('');
+					 }
+				});
+				
+				$(input).blur(function(){
+					if (input.val() == '' || input.val() == input.attr('placeholder')) {
+						input.val(input.attr('placeholder'));
+					}
+				});
+			});
+
+
+	$('#resultarea').css({ display : 'inline' }).fadeIn("slow");
+	
+	$('#date_aller').datepicker();
+	$('#date_retour').datepicker();
+	
+        document.getElementById("submit").disabled = true; 
+
+	$('#submit').click( function(e) {
+		$(this).find('[placeholder]').each(function() {
+  				var input = $(this);
+   				if (input.val() == input.attr('placeholder')) {
+    			  input.val('');
+    			}
+			});
+			
+			$("#form_devis").validationEngine({
+				success : false,
+				failure : function(e) { e.preventDefault(); }	
+			});
+		});
+		$( 'input[name="radio_prestaplus"]' ).change(function() {
+			PrestaPlus = (! $("#radio_prestaplus_non:checked").length );
+			$(".ZonePrestaVAller").toggle(PrestaPlus);
+			$(".ZonePrestaHeber").toggle(PrestaPlus);
+			$(".ZonePrestaRestauration").toggle(PrestaPlus);
+$(".ZonePrestaAutres").toggle(PrestaPlus);
+$(".ZonePrestaCommentaire").toggle(PrestaPlus);
+	});
+
+	$( 'input[name="type_voyage"]' ).change(function() {
+			AllerRetour = (! $("#type_voyage_aller:checked").length );
+			$(".ZoneRetour").toggle(AllerRetour);
+$(".ZoneFraisHebergement").toggle(AllerRetour);
+$(".ZoneAutocarSurPlace").toggle(AllerRetour);
+$(".ZonePrestaVRetour").toggle(AllerRetour);
+	});
+	
+	$("#cp_depart, #cp_arrivee").autocomplete({
+					source: function (request, response)
+					{
+						if (('FR' + '-' + request.term) in cache)
+						{
+							response($.map(cache['FR' + '-' + request.term], function (item)
+							{
+
+								return {
+									label: item.CodePostal + ", " + item.Ville,
+									value: function ()
+									{
+										if ($(this).attr('id') == 'cp_depart')
+										{
+											$('#cp_depart').val(item.CodePostal + " " + item.Ville);
+											return item.CodePostal + " " + item.Ville;
+										}
+										else
+										{
+											$('#cp').val(item.CodePostal);
+											return item.Ville;
+										}
+									}
+								}
+							}));
+						}
+						//Sinon -> Requete Ajax
+						else
+						{
+							var objData = {};
+							if ($(this.element).attr('id') == 'cp_depart')
+							{
+								objData = { cpville: request.term, pays: 'FR', maxRows: 10 };								
+							}
+							else if ($(this.element).attr('id') == 'cp_arrivee')
+							{
+								objData = { cpville: request.term, pays: 'FR', maxRows: 10 };								
+							}
+							
+							$.ajax({
+								url: "../../../api/autocomplete",
+								dataType: "json",
+								data: objData,
+								type: 'POST',
+								success: function (data)
+								{
+									//Ajout de reponse dans le cache
+									cache[('FR' + '-' + request.term)] = data;
+									response($.map(data, function (item)
+									{
+
+										return {
+											label: item.CodePostal + ", " + item.Ville,
+											value: function ()
+											{
+												if ($(this).attr('id') == 'cp_depart')
+												{
+													$('#cp_depart').val(item.CodePostal + " " + item.Ville);
+													return (item.CodePostal + " " + item.Ville);
+												}
+												else if ($(this).attr('id') == 'cp_arrivee')
+												{
+													$('#cp_arrivee').val(item.CodePostal + " " + item.Ville);
+													return (item.CodePostal + " " + item.Ville);
+												}
+											}
+										}
+									}));
+								}
+							});
+						}
+					},
+					minLength: 3,
+					delay: 600
+				});
+});
+
+function enableSubm(){
+    document.getElementById("submit").disabled = false;
+}</script>
+
+<script type="text/javascript">
+function checkCheckBox(ele) {
+ 
+    if (ele.checked == false ) {
+        var div = document.getElementById("ajout");
+        div.removeChild(div.firstChild);
+    return false;
+    }
+    else {
+        var textarea = document.createElement("textarea");
+        document.getElementById("ajout").appendChild(textarea);
+    }
+    return true;
+     
+}
+</script>
+    <style class="silex-inline-styles" type="text/css">.body-initial {background-color: rgba(255,255,255,1); position: static;}.silex-id-1474394621033-3 {position: static; margin-top: -1px;}.silex-id-1474394621032-2 {background-color: transparent; min-height: 1494.8046875px; position: relative; margin-left: auto; margin-right: auto;}.silex-id-1615309362492-4 {width: 1036px; min-height: 420px; background-color: rgb(255, 255, 255); position: absolute; top: 42.99999809265137px; left: 121.97915649414062px;}.silex-id-1615309890893-8 {width: 1008px; min-height: 332px; background-color: rgb(255, 255, 255); position: absolute; top: 28px; left: 69px;}.silex-id-1615475032045-0 {width: 806px; min-height: 35px; background-color: rgb(255, 255, 255); position: absolute; top: 16.423606872558594px; left: 258.6632080078125px;}.silex-id-1615475640960-3 {width: 535px; min-height: 45px; background-color: rgb(255, 255, 255); position: absolute; top: 84.29166412353516px; left: 338.0000305175781px;}.silex-id-1615476220042-4 {width: 270px; min-height: 36px; background-color: rgb(255, 255, 255); position: absolute; top: 133.47265625px; left: 464.9453125px;}.silex-id-1615479550980-5 {width: 245px; min-height: 40px; background-color: rgb(255, 255, 255); position: absolute; top: 156.5px; left: 12.396041870117188px;}.silex-id-1615982018438-0 {width: 316px; min-height: 45px; background-color: rgb(255, 255, 255); position: absolute; top: 132.98828125px; left: 809.0078125px;}.silex-id-1615982398902-1 {width: 725px; min-height: 36px; background-color: rgb(255, 255, 255); position: absolute; top: 429.6041564941406px; left: 168.35415649414062px;}.silex-id-1615982785651-2 {width: 889px; min-height: 68px; background-color: rgb(255, 255, 255); position: absolute; top: 271px; left: 267.7708435058594px;}.silex-id-1615983002903-3 {width: 1022.8125px; min-height: 238.6666717529297px; background-color: rgb(255, 255, 255); position: absolute; top: 27px; left: 121px;}.silex-id-1615983641775-4 {width: 100px; min-height: 3319px; background-color: rgb(255, 255, 255); position: absolute; top: -344.5px; left: 38.98828125px;}.silex-id-1615984300150-5 {width: 1152px; min-height: 801px; background-color: rgb(255, 255, 255); position: absolute; top: 211px; left: 92px;}.silex-id-1615986766095-6 {width: 479px; min-height: 89px; background-color: rgb(255, 255, 255); position: absolute; top: 318.6666564941406px; left: 483.000040769577px;}.silex-id-1616341295363-3 {width: 202px; min-height: 56px; background-color: rgb(255, 255, 255); position: absolute; top: 217.99999237060547px; left: 482.99998474121094px;}@media only screen and (max-width: 480px) {}</style>
     <title></title>
     
 
@@ -928,7 +1114,6 @@ function checkCheckBox(ele) {
     <title> Mon super site</title>
 </head>
 <body>
-    figifghuhgh
 </body>
 <!-- End of Silex HEAD tag do not remove --></head>
 
@@ -1265,8 +1450,7 @@ function checkCheckBox(ele) {
 									
 										</tbody>
 									</table>
-									</form></div></div><div data-silex-type="html-element" class="editable-style html-element silex-id-1615986766095-6 page-7 paged-element" data-silex-id="silex-id-1615986766095-6" style=""><div class="silex-element-content"><input type="checkbox" value="0" name="oui" onclick="checkCheckBox(this)"> Coché ce que vous voulez
-<div id="ajout"></div></div></div><div data-silex-type="html-element" class="editable-style html-element silex-id-1615309362492-4 page-page-1 paged-element" data-silex-id="silex-id-1615309362492-4" style=""><div class="silex-element-content"><form method="post" action="form.php">
+									</form></div></div><div data-silex-type="html-element" class="editable-style html-element silex-id-1615309362492-4 page-page-1 paged-element" data-silex-id="silex-id-1615309362492-4" style=""><div class="silex-element-content"><form method="post" action="form.php">
   <fieldset>
     <legend>Informations personnelles :</legend>
     <div class="champ">
@@ -1761,7 +1945,26 @@ function checkCheckBox(ele) {
 																<option>22h</option>
 																<option>23h</option>
 														</select></div></div><div data-silex-type="html-element" class="editable-style html-element silex-id-1616341295363-3 page-7 paged-element" data-silex-id="silex-id-1616341295363-3" style=""><div class="silex-element-content"><input type="checkbox" value="0" name="oui" onclick="checkCheckBox(this)"> Coché ce que vous voulez
-<div id="ajout"></div></div></div></div><div data-silex-type="html-element" class="editable-style html-element silex-id-1615983641775-4 page-5 paged-element" data-silex-id="silex-id-1615983641775-4" style=""><div class="silex-element-content">
+<div id="ajout"></div></div></div><div data-silex-type="html-element" class="editable-style html-element silex-id-1615986766095-6 page-7 paged-element" data-silex-id="silex-id-1615986766095-6" style=""><div class="silex-element-content"><input type="checkbox" value="0" name="oui" onclick="checkCheckBox(this)"> Coché ce que vous voulez
+<div id="ajout"></div>
+
+
+
+
+
+    J’ai un vélo pour les maraudes ?
+    <div>
+  <input type="radio" id="huey" name="drone" onclick="radioQuestion(this);" value="0" checked="">
+  <label for="huey">Oui</label>
+</div>
+
+<div>
+  <input type="radio" id="dewey" name="drone" onclick="radioQuestion(this);" value="1">
+  <label for="dewey">Non</label>
+</div>
+
+
+<div id="test"> je suis un div </div></div></div></div><div data-silex-type="html-element" class="editable-style html-element silex-id-1615983641775-4 page-5 paged-element" data-silex-id="silex-id-1615983641775-4" style=""><div class="silex-element-content">
 
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
