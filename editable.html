@@ -428,12 +428,12 @@ function checkCheckBox(ele) {
 </div></div><div data-silex-type="html-element" class="editable-style html-element silex-id-1616514323208-4 page-8 paged-element" data-silex-id="silex-id-1616514323208-4" style=""><div class="silex-element-content">
 J’ai un vélo pour les maraudes ?
 <div>
-  <input type="radio" id="oui" name="oui" onclick="radioQuestion(this)" value="0">
+  <input type="radio" id="oui" name="oui" onclick="radioQuestion(this)" value="0" checked="">
   <label>Oui</label>
 </div>
 
 <div>
-  <input type="radio" id="non" name="non" onclick="radioQuestion(this);" value="1" checked="">
+  <input type="radio" id="non" name="non" onclick="radioQuestion(this);" value="1">
   <label>Non</label>
 </div>
 
@@ -446,10 +446,10 @@ function radioQuestion(ele) {
     var div = document.getElementById("test");
 
     if (ele.value == "0" ) {
-           div.style.display = 'block';
+           div.style.display = 'none';
     }
     else {
-        div.style.display ='none';
+        div.style.display ='block';
     }
         
 }
